@@ -1,0 +1,20 @@
+<% layout("./layouts/layout.eta") %>
+
+<div class="jumbotron">
+
+<h3 class="text-center" style="color:black;">You have answered in <%= it.answers.count%> questions</h3>
+<p class="text-center pt-4" style="color:black;"><%= it.correct.count%> of them were correct</p>
+<p class="text-center" style="color:black;">Your questions were answered <%= it.answered.count%> times</p>
+
+<hr class="my-4">
+
+<h3 class="text-center p-4" style="color:black;">The Top 5</h3>
+
+<% it.topFive.forEach(user => { %>
+        <div class="d-flex justify-content-center">
+            <p class="text-center" style="color:black;"> <%= user.email%> answered <%= user.count%> questions</p>
+        </div>
+<% }); %>
+  
+
+</div>

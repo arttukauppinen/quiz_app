@@ -1,0 +1,10 @@
+<% layout("./layouts/layout.eta") %>
+
+<div class="jumbotron">
+  <h1 class="display-4" style="color:black;">Quiz App!</h1>
+  <p class="lead" style="color:black;">This is an application where you can attempt quiz and add questions for you and others to answer.</p>
+  <hr class="my-4">
+  <p class="lead">
+    <a class="btn btn-dark btn-sm" href="/auth/login" role="button">Login!</a> <a class="btn btn-dark btn-sm" href="/auth/register" role="button">Register!</a>
+  </p>
+</div>

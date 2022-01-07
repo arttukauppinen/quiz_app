@@ -1,0 +1,78 @@
+<% layout("./layouts/layout.eta") %>
+
+<div class="jumbotron">
+   <h3 class="text-center p-1" style="color:black;">
+       Title: <%= it.question.title%> 
+   </h3>
+
+   <h5 class="text-center" style="color:black;">
+       Question: <%= it.question.question_text%>
+   </h5>
+
+   <h5 class="text-center m-4" style="color:black;">
+       ID: <%= it.question.id%>
+   </h5>
+</div>
+
+
+<div class="jumbotron">
+   <h3 class="text-center p-5" style="color:black;">
+      Add an option to this question: 
+   </h3>
+   <form method="POST" action="/questions/<%= it.question.id%>/options">
+      <div class="d-flex justify-content-center p-3" >
+         <label for="option_text"></label>
+         <textarea class="form-control w-50" name="option_text" rows="3" placeholder="Option text"><%= it.text ? it.text : "" %></textarea>
+      </div>
+      <% if (!it.hasCorrect) { %>
+         <p class="text-center" style="color:black;"> option is correct</p>
+         <div class="d-flex justify-content-center">
+            <input class="form-check-input position-static" type="checkbox" name = "is_correct">
+         </div>
+      <% } else { %>
+         <p class="text-center" style="color:black;">
+            You can only add one correct answer per question. You can still submit false options <input type="hidden" name="is_correct">
+         </p>
+      <% } %>
+      <div class="d-flex justify-content-center p-5">
+         <input type="submit" value="Add" class="btn btn-dark btn-sm btn-block w-50"/>
+      </div>
+   </form>
+   <h3 class="text-center p-1" style="color:black;"><%= it.validationErrors%></h3>
+</div>
+
+ 
+
+
+<div class="jumbotron">
+   <% if (it.options && it.options.length > 0) { %>
+      <h3 class="text-center" style="color:black;">Options added to this question:</h3>
+      <% it.options.forEach(option => { %>
+         <p class="text-center pt-5" style="color:black;"><%= option.option_text%> - <%= option.is_correct%></p>
+            <form method="POST" action="/questions/<%= option.question_id%>/options/<%= option.id%>/delete">
+               <div class="d-flex justify-content-center">
+                  <input type="submit" value="Delete option" class="btn btn-dark btn-sm btn-block w-50"/>
+               </div>
+            </form>
+      <% }); %>
+
+   <% } else { %>
+      <p class="text-center" style="color:black;">There is not options added to this question. Delete the question by pressing the button below.</p>
+      <form method="POST" action="/questions/<%= it.question.id%>/delete">
+         <div class="d-flex justify-content-center p-2">
+            <input type="submit" value="Delete question" class="btn btn-dark btn-sm btn-block w-50"/>
+         </div>
+      </form>
+   <% } %>
+</div>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+<% layout("./layouts/layout.eta") %>
+
+<div class="jumbotron">
+
+<h3 class="text-center" style="color:black;"><%= it.question.title%></h3>
+<p class="text-center" style="color:black;"><%= it.question.question_text%></p>
+<hr class="my-4">
+
+<% it.options.forEach(option => { %>
+    <form method="POST" action="/quiz/<%= option.question_id%>/options/<%= option.id%>">
+        <div class="d-flex justify-content-center p-2">
+            <input type="submit" value="<%= option.option_text%>" class="btn btn-dark btn-sm btn-block w-50"/>
+        </div>
+    </form>
+<% }); %>
+  
+
+</div>
