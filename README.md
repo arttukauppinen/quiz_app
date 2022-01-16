@@ -49,4 +49,4 @@ $ deno run --unstable --allow-all --watch run-locally.js
 
 online location for application:
 
-<https://deno-quizapp.herokuapp.com/)>
+<https://deno-quizapp.herokuapp.com>
